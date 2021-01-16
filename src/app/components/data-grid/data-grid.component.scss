@@ -1,0 +1,20 @@
+.click{
+  cursor: pointer;
+}
+
+.selected{
+  background-color: #3699FF;
+  color:#FFF !important;
+}
+
+.mat-row:hover {
+  background-color: #1e1e2d5c;
+}
+
+ .mat-row:hover > .mat-cell {
+  color: #FFF;
+}
+
+.mat-column-action {
+  flex: 0 0 5%;
+}

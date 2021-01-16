@@ -1,0 +1,53 @@
+<div class="mx-auto wrap-login">
+    <div class="justify">
+        <img class="logo" src="/assets/img/Logo-7system.jpg" />
+    </div>
+    <div class="justify">
+        <h3>Login</h3>
+    </div>
+    <form [formGroup]="loginForm" (ngSubmit)="login()">
+        <mat-form-field>
+            <input type="text" matInput placeholder="Email" formControlName="email" autocomplete="off">
+        </mat-form-field>
+
+        <div class="form-label-group">
+            <mat-form-field>
+                <mat-label>Senha</mat-label>
+                <input matInput [type]="hidePassword ? 'password' : 'text'" formControlName="password">
+                <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword"
+                    [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidePassword">
+                    <mat-icon color="primary">
+                        {{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+            </mat-form-field>
+        </div>
+
+        <button class="btn btn-lg btn-custom btn-block text-uppercase" type="submit">Entrar</button>
+        <hr class="my-4">
+        <div class="justify">
+            <a routerLink="/forgot-password">Esqueci minha senha</a>
+        </div>
+        <hr class="my-4">
+        <div class="justify">
+            <h4>Login com redes sociais</h4>
+        </div>
+        <div class="justify">
+            <button type="button" mat-fab class="btn-google btn-social" color="warn" aria-label="Entrar com google"
+                (click)="signInGoogle()">
+                <i class="fa fa-google"></i>
+            </button>
+            <button type="button" mat-fab class="btn-facebook btn-social" color="primary"
+                aria-label="Entrar com facebook" (click)="signInFacebook()">
+                <i class="fa fa-facebook"></i>
+            </button>
+        </div>
+        <hr class="my-4">
+        <div class="justify">
+            <p>Ainda nao possui conta? <a routerLink="/register">Clique aqui</a></p>
+        </div>
+
+        <ngx-loading [show]="loading" [config]="config"></ngx-loading>
+
+    </form>
+
+</div>

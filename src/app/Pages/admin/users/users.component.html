@@ -1,0 +1,95 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <breadcrumb [pages]="breadcrumbPages"></breadcrumb>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xl-8 col-md-12 col-sm-12">
+                <div class="card with-transition">
+                    <div class="card-header card-header-tabs card-header-custom">
+                        <div class="nav-tabs-navigation">
+                            <div class="nav-tabs-wrapper">
+                                <h4 class="card-title">Usuários</h4>
+                                <p class="card-category">Gerencie os Desbravadores do seu clube</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-body">
+
+                        <div class="newUser pull-right">
+                            <button mat-mini-fab color="custom" aria-label="Novo usuário" matTooltip="Novo Usuário"
+                                [routerLink]="['/user']">
+                                <mat-icon>add_user</mat-icon>
+                            </button>
+                        </div>
+
+                        <div class="table-responsive">
+                            <mat-form-field>
+                                <mat-label>Filtrar</mat-label>
+                                <input matInput (keyup)="applyFilter($event)" autocomplete="false">
+                            </mat-form-field>
+                            <mat-table #table [dataSource]="dataSource" matSort class="mat-table">
+
+                                <ng-container matColumnDef="fullName">
+                                    <mat-header-cell *matHeaderCellDef> Nome </mat-header-cell>
+                                    <mat-cell *matCellDef="let row">
+                                        {{row.fullName}}
+                                    </mat-cell>
+                                </ng-container>
+
+                                <ng-container matColumnDef="email">
+                                    <mat-header-cell *matHeaderCellDef> Email </mat-header-cell>
+                                    <mat-cell *matCellDef="let row">
+                                        {{row.email}}
+                                    </mat-cell>
+                                </ng-container>
+
+                                <ng-container matColumnDef="roleName">
+                                    <mat-header-cell *matHeaderCellDef> Cargo </mat-header-cell>
+                                    <mat-cell *matCellDef="let row">
+                                        {{row.roleName}}
+                                    </mat-cell>
+                                </ng-container>
+
+                                <ng-container matColumnDef="isActive">
+                                    <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
+                                    <mat-cell *matCellDef="let row">
+                                        {{row.isActive == true ? 'Ativo' : 'Inativo'}}
+                                    </mat-cell>
+                                </ng-container>
+
+                                <ng-container matColumnDef="actions">
+                                    <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+                                    <mat-cell *matCellDef="let row">
+                                        <button mat-raised-button type="button" matTooltip="Editar Usuário"
+                                            [matTooltipPosition]="'above'" [routerLink]="['/user']"
+                                            [queryParams]="{userId: row.id}"
+                                            class="btn btn-link btn-sm btn-just-icon btn-warning">
+                                            <i class="material-icons">edit</i>
+                                        </button>
+
+                                        <button mat-raised-button type="button" matTooltip="Deletar Usuário"
+                                            [matTooltipPosition]="'above'" (click)="deleteUser(row)"
+                                            class="btn btn-link btn-sm btn-just-icon btn-danger">
+                                            <i class="material-icons">delete</i>
+                                        </button>
+                                    </mat-cell>
+                                </ng-container>
+
+                                <mat-header-row class="mat-header-row" *matHeaderRowDef="displayedColumns">
+                                </mat-header-row>
+                                <mat-row *matRowDef="let row; columns: displayedColumns;" class="selectable mat-row">
+                                </mat-row>
+                            </mat-table>
+
+                            <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons></mat-paginator>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

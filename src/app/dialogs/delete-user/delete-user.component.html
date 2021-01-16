@@ -1,0 +1,11 @@
+<h1 mat-dialog-title>Deletar usuário</h1>
+<div mat-dialog-content>
+    <p>Deseja realmente deletar o usuário
+        <br>
+        <b> {{data.fullName}} </b> ?
+    </p>
+</div>
+<div mat-dialog-actions align="end">
+    <button mat-button class="btn btn-sm btn-danger" (click)="close()">Cancelar</button>
+    <button mat-button class="btn btn-sm btn-custom" (click)="confirmDelete()" cdkFocusInitial>Deletar</button>
+</div>

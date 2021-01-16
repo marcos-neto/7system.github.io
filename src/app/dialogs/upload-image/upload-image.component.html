@@ -1,0 +1,27 @@
+<div mat-dialog-title>{{data.title}}</div>
+
+<div mat-dialog-content>
+    <hr>
+    <div class="dropzone">
+
+        <h3 for="fileDropRef">
+            <i class="material-icons">cloud_upload </i>
+            <span *ngIf="!isMobile">Arraste a imagem ou clique aqui</span>
+            <span *ngIf="isMobile">Carregar imagem</span>
+        </h3>
+
+        <input type="file" #fileDropRef id="fileDropRef" (change)="fileChangeEvent($event)">
+
+    </div>
+
+    <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true" [aspectRatio]="4 / 4"
+        format="png" (imageCropped)="imageCropped($event)" (imageLoaded)="imageLoaded()"
+        (loadImageFailed)="loadImageFailed()"></image-cropper>
+
+    <ngx-loading [show]="loading" [config]="config"></ngx-loading>
+
+</div>
+<div mat-dialog-actions align="end">
+    <button mat-button class="btn btn-sm btn-danger" (click)="onNoClick()">Cancelar</button>
+    <button mat-button class="btn btn-sm btn-custom" [mat-dialog-close]="data" cdkFocusInitial>Salvar</button>
+</div>

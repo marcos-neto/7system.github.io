@@ -1,0 +1,57 @@
+<mat-form-field *ngIf="config.useFilter">
+  <mat-label>Filtrar</mat-label>
+  <input matInput (keyup)="applyFilter($event)">
+</mat-form-field>
+
+<mat-table [dataSource]="tableDataSource" matSort class="mat-elevation-z8">
+
+  <ng-container *ngFor="let col of config.displayColumns" matColumnDef="{{col.field}}">
+
+    <mat-header-cell *matHeaderCellDef mat-sort-header [disabled]="!this.config.useSortable">
+      {{col.displayName}}
+    </mat-header-cell>
+
+    <mat-cell *matCellDef="let element">
+
+      <div [ngSwitch]="col.type">
+
+        <div *ngSwitchCase="'date'">
+          {{element[col.field] | date : config.dateformat }}
+        </div>
+
+        <div *ngSwitchCase="'currency'">
+          {{element[col.field] | currency}}
+        </div>
+
+        <div *ngSwitchCase="'action'">
+
+          <button mat-icon-button color="{{lineAction.color}}" *ngFor="let lineAction of config.lineActions"
+            (click)="lineAction.action(element)" placement="top" ngbTooltip="{{lineAction.label}}"
+            ngbTooltipClass="kt-tooltip">
+            <mat-icon>{{lineAction.icon}}</mat-icon>
+          </button>
+
+        </div>
+
+        <div *ngSwitchDefault>
+          {{element[col.field]}}
+        </div>
+
+      </div>
+
+    </mat-cell>
+
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="cols">
+  </mat-header-row>
+
+  <mat-row (click)="selectableLine(row)" *matRowDef="let row; columns: cols;"
+    [ngClass]="{'click': config.useSelect, 'selected': isSelected(row) && config.useSelect }">
+  </mat-row>
+
+</mat-table>
+
+<mat-paginator [pageSizeOptions]="config.pageSize" showFirstLastButtons *ngIf="verifyUsePaginator()"
+  (page)="pageEvent = changePage($event)" [length]="config.page.totalElements" [pageSizeOptions]="config.pageSize"
+  [pageSize]="config.page.size" [pageIndex]="config.page.index"></mat-paginator>

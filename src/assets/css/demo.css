@@ -1,0 +1,57 @@
+.tim-typo{
+  padding-left: 25%;
+  margin-bottom: 40px;
+  position: relative;
+  width: 100%;
+}
+
+.tim-typo .tim-note{
+  bottom: 5px;
+  color: #c0c1c2;
+  display: block;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 15px;
+  left: 0;
+  margin-left: 20px;
+  position: absolute;
+  width: 260px;
+}
+
+.card .card-header-custom .card-icon, .card .card-header-custom .card-text, .card .card-header-custom:not(.card-header-icon):not(.card-header-text), .card.bg-custom, .back{
+  background: linear-gradient(60deg, #31319f, #060555);
+}
+
+.mat-button.btn.btn-custom, .mat-raised-button.btn.btn-custom, .mat-raised-button.btn:not([class*=mat-elevation-z]).btn-custom, .btn.btn-custom {
+  color: #fff;
+  background: linear-gradient(60deg, #31319f, #060555);
+  border-color: #060555;
+  box-shadow: 0 2px 2px 0 rgba(49, 49, 159, 1), 0 3px 1px -2px rgba(49, 49, 159, 1), 0 1px 5px 0 rgba(49, 49, 159, 1);
+}
+
+.sidebar[data-color=danger] li.active > a {
+  background: linear-gradient(60deg, #31319f, #060555);
+  box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(244, 67, 54, 0.4);
+}
+
+.text-custom {
+  color: #060555 !important;
+}
+
+.mat-flat-button.mat-custom, .mat-raised-button.mat-custom, .mat-fab.mat-custom, .mat-mini-fab.mat-custom {
+  background-color: #070652;
+}
+
+.mat-flat-button.mat-custom, .mat-raised-button.mat-custom, .mat-fab.mat-custom, .mat-mini-fab.mat-custom {
+  color: #fff;
+}
+
+.icon-desbravar-symbol{
+  width: 17px;
+  margin-right: 1px;
+  padding-bottom: 2px;
+}
+
+.breadcrumb{
+  background-color: transparent !important;
+}

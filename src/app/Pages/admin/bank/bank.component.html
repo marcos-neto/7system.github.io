@@ -1,0 +1,114 @@
+<div class="main-content">
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-12">
+                <breadcrumb [pages]="breadcrumbPages"></breadcrumb>
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="col-xl-8 col-md-12 col-sm-12">
+                <div class="card">
+                    <div class="card-header card-header-custom">
+                        <h4 class="card-title">Transações de desbravares</h4>
+                        <p class="card-category">Adicione ou remova desbravar</p>
+                    </div>
+                    <div class="card-body">
+                        <mat-horizontal-stepper linear labelPosition="bottom" #stepper>
+                            <mat-step [stepControl]="formTransaction" errorMessage="Preencha os campos">
+                                <ng-template matStepLabel>Defina o valor</ng-template>
+                                <form [formGroup]="formTransaction">
+                                    <mat-form-field class="col-10">
+                                        <mat-label>Valor</mat-label>
+                                        <input type="number" matInput formControlName="amount" required
+                                            autocomplete="off">
+                                    </mat-form-field>
+
+                                    <mat-form-field class="col-10">
+                                        <mat-label>Motivo</mat-label>
+                                        <textarea matInput formControlName="reason" required maxlength="100"></textarea>
+                                        <mat-hint align="end">{{formTransaction.value.reason.length}} / 100
+                                        </mat-hint>
+                                    </mat-form-field>
+                                </form>
+
+                                <button class="btn btn-custom pull-right" mat-button matStepperNext>Próximo</button>
+                            </mat-step>
+                            <mat-step [stepControl]="" errorMessage="Selecione pelo menos um Desbravador">
+                                <ng-template matStepLabel>Selecione os desbravadores</ng-template>
+
+                                <mat-form-field>
+                                    <mat-label>Filtrar</mat-label>
+                                    <input matInput (keyup)="applyFilter($event)" autocomplete="off">
+                                </mat-form-field>
+
+                                <div class="table-responsive mat-elevation-z8">
+                                    <mat-table [dataSource]="dataSource" matSort>
+
+                                        <ng-container matColumnDef="select">
+                                            <mat-header-cell *matHeaderCellDef>
+                                                <mat-checkbox (change)="$event ? masterToggle() : null"
+                                                    [checked]="selection.hasValue() && isAllSelected()"
+                                                    [indeterminate]="selection.hasValue() && !isAllSelected()"
+                                                    [aria-label]="checkboxLabel()">
+                                                </mat-checkbox>
+                                            </mat-header-cell>
+                                            <mat-cell *matCellDef="let row">
+                                                <mat-checkbox (click)="$event.stopPropagation()"
+                                                    (change)="$event ? selection.toggle(row) : null"
+                                                    [checked]="selection.isSelected(row)"
+                                                    [aria-label]="checkboxLabel(row)">
+                                                </mat-checkbox>
+                                            </mat-cell>
+                                        </ng-container>
+
+                                        <ng-container matColumnDef="name">
+                                            <mat-header-cell *matHeaderCellDef mat-sort-header> Nome </mat-header-cell>
+                                            <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+                                        </ng-container>
+
+                                        <ng-container matColumnDef="amount">
+                                            <mat-header-cell *matHeaderCellDef> Desbravares </mat-header-cell>
+                                            <mat-cell *matCellDef="let element">
+                                                <span>
+                                                    <img class="icon-desbravar-symbol"
+                                                        src="../../../assets/img/desbravar-symbol.png">
+                                                </span>
+                                                {{element.amount}}
+                                            </mat-cell>
+                                        </ng-container>
+
+                                        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                                        <mat-row *matRowDef="let row; columns: displayedColumns;"
+                                            (click)="selection.toggle(row)">
+                                        </mat-row>
+                                    </mat-table>
+
+                                    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+                                </div>
+
+                                <button class="btn btn-custom pull-right" mat-button matStepperNext>Próximo</button>
+                                <button class="btn btn-custom" mat-button matStepperPrevious>Voltar</button>
+
+                            </mat-step>
+                            <mat-step [stepControl]="selection.selected.length > 0">
+                                <ng-template matStepLabel>Confirmação</ng-template>
+
+                                <button mat-raised-button (click)="addTransaction(true); stepper.reset();"
+                                    class="btn btn-lg btn-success pull-right button-bank">
+                                    <mat-icon>add</mat-icon>Adicionar
+                                </button>
+                                <button mat-raised-button (click)="addTransaction(false); stepper.reset();"
+                                    class="btn btn-lg btn-danger pull-right button-bank">
+                                    <mat-icon>close</mat-icon>Remover
+                                </button>
+                            </mat-step>
+                        </mat-horizontal-stepper>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
