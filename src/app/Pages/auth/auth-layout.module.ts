@@ -1,3 +1,4 @@
+import { ComponentsModule } from './../../components/components.module';
 import { CommonModule } from '@angular/common';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -15,10 +16,14 @@ import { MatIconModule } from '@angular/material/icon';
 import { NgxLoadingModule } from 'ngx-loading';
 import { TextMaskModule } from 'angular2-text-mask';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
-import { MAT_MOMENT_DATE_FORMATS, MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS, } from '@angular/material-moment-adapter';
+import { MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS, } from '@angular/material-moment-adapter';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import * as _moment from 'moment';
 import { FacebookLoginProvider, GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from 'angularx-social-login';
+import { RegisterWithComponent } from './register-with/register-with.component';
+import { LoadingBarModule } from '@ngx-loading-bar/core';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { ConfirmAccountComponent } from './confirm-account/confirm-account.component';
 
 export const MY_DATE_FORMATS = {
   parse: {
@@ -47,39 +52,32 @@ export const MY_DATE_FORMATS = {
     MatSelectModule,
     CommonModule,
     SocialLoginModule,
+    ComponentsModule,
+    LoadingBarModule,
     NgxLoadingModule.forRoot({})
   ],
   providers: [
-    { provide: MAT_DATE_LOCALE, useValue: 'pt-BR' },
+    {
+      provide: MAT_DATE_LOCALE,
+      useValue: 'pt-BR'
+    },
     {
       provide: DateAdapter,
       useClass: MomentDateAdapter,
       deps: [MAT_DATE_LOCALE, MAT_MOMENT_DATE_ADAPTER_OPTIONS]
     },
-    { provide: MAT_DATE_FORMATS, useValue: MY_DATE_FORMATS },
     {
-      provide: 'SocialAuthServiceConfig',
-      useValue: {
-        autoLogin: false,
-        providers: [
-          {
-            id: GoogleLoginProvider.PROVIDER_ID,
-            provider: new GoogleLoginProvider(
-              '538590688296-njkm83dq57r8k1emv165rl1dvd5nsqn9.apps.googleusercontent.com'
-            )
-          },
-          {
-            id: FacebookLoginProvider.PROVIDER_ID,
-            provider: new FacebookLoginProvider('417894896330577')
-          }
-        ]
-      } as SocialAuthServiceConfig,
+      provide: MAT_DATE_FORMATS,
+      useValue: MY_DATE_FORMATS
     }
   ],
   declarations: [
     LoginComponent,
     RegisterComponent,
-    ForgotPasswordComponent
+    ForgotPasswordComponent,
+    RegisterWithComponent,
+    ResetPasswordComponent,
+    ConfirmAccountComponent
   ]
 })
 export class AuthLayoutModule { }

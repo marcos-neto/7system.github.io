@@ -1,6 +1,6 @@
 import { HttpHeaders } from '@angular/common/http';
 import { System7HttpClient, IRequestOptions } from '../custom-HttpClient';
-import { ICredentials, IRegister, IToken } from '../models/authModels';
+import { ICredentials, IRegister, IResetPassword, IToken } from '../models/authModels';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
@@ -16,32 +16,32 @@ export class AuthService {
     constructor(public http: System7HttpClient, private router: Router) { }
 
 
-    Login(email: string, password: string): Observable<IToken> {
-
-        let credentials: ICredentials = {
-            email: email,
-            password: password,
-            grantType: 'password'
-        }
-
+    login(credentials: ICredentials): Observable<IToken> {
         return this.http.Post<IToken>(`${this.uri}/Login`, credentials);
     }
 
-    Logout() {
+    logout() {
         sessionStorage.removeItem('UserToken');
         this.router.navigate(['']);
     }
 
-    ForgotPassword(email: string) {
-        return this.http.Post(`${this.uri}/ForgotPassword`, email);
-
+    forgotPassword(body: any, params?): Observable<any> {
+        return this.http.Post(`${this.uri}/ForgotPassword`, body, params);
     }
 
-    Register(params: IRegister): Observable<any> {
-        return this.http.Post(`${this.uri}/Register`, params);
+    register(body: IRegister): Observable<any> {
+        return this.http.Post(`${this.uri}/Register`, body);
     }
 
-    GetClubs(): Observable<ISimplifiedClub[]> {
-        return this.http.Get<ISimplifiedClub[]>(`${this.uri}/Clubs`);
+    isRegistered(params: any) {
+        return this.http.Head(`${this.uri}/IsRegistered`, params);
+    }
+
+    resetPassword(body: IResetPassword): Observable<any> {
+        return this.http.Post(`${this.uri}/ResetPassword`, body);
+    }
+
+    confirmAccount(body: any, params?): Observable<any> {
+        return this.http.Post(`${this.uri}/ConfirmAccount`, body, params);
     }
 }

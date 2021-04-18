@@ -5,44 +5,13 @@
     <div class="justify">
         <h3>Cadastro</h3>
     </div>
-    <form [formGroup]="registerForm" (ngSubmit)="register()">
-        <mat-form-field>
-            <input type="text" matInput placeholder="Nome Completo" [formControl]="fullNameControl" autocomplete="off">
-        </mat-form-field>
 
-        <mat-form-field>
-            <input matInput type="email" placeholder="Email" [formControl]="emailControl" autocomplete="off">
-            <mat-icon matSuffix>email</mat-icon>
-        </mat-form-field>
+    <form-custom [config]="formConfig" (submitForm)="register($event)"></form-custom>
 
-        <mat-form-field appearance="legacy">
-            <input matInput [matDatepicker]="dp" placeholder="Data de Nascimento" [formControl]="birthDateControl"
-                autocomplete="off" disabled>
-            <mat-datepicker-toggle matSuffix [for]="dp">
-                <mat-icon matDatepickerToggleIcon class="custom-icon">keyboard_arrow_down</mat-icon>
-            </mat-datepicker-toggle>
-            <mat-datepicker #dp startView="multi-year" disabled="false"></mat-datepicker>
-        </mat-form-field>
+    <hr class="my-4">
+    <div class="justify">
+        <p>Ja possui uma conta? <a routerLink="/login">Faça login</a></p>
+    </div>
 
-        <mat-form-field>
-            <input matInput type="text" placeholder="Celular" [formControl]="phoneControl"
-                [textMask]="{mask: mask.Cell}" autocomplete="off">
-            <mat-icon matSuffix>smartphone</mat-icon>
-        </mat-form-field>
-
-        <mat-form-field>
-            <mat-label>Clube</mat-label>
-            <mat-select [formControl]="clubControl" required>
-                <mat-option *ngFor="let club of clubs" [value]="club">
-                    {{club.name}}
-                </mat-option>
-            </mat-select>
-        </mat-form-field>
-
-        <button class="btn btn-lg btn-custom btn-block text-uppercase" type="submit">Cadastrar</button>
-        <hr class="my-4">
-        <div class="justify">
-            <p>Ja possui uma conta? <a routerLink="/login">Faça login</a></p>
-        </div>
-    </form>
+    <loader></loader>
 </div>

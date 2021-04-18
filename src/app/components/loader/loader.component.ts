@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
 import { LoaderService } from 'app/backend/services/loader.service';
-import { LoadingConfig } from 'app/common/Constantes';
+import { LoadingConfig } from 'app/_config/loading.config';
 
 @Component({
-  selector: 'app-loader',
+  selector: 'loader',
   templateUrl: './loader.component.html',
   styleUrls: ['./loader.component.css']
 })

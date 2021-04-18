@@ -23,11 +23,15 @@
           {{element[col.field] | currency}}
         </div>
 
-        <div *ngSwitchCase="'action'">
+        <div *ngSwitchCase="'boolean'">
+          <mat-icon [color]="element[col.field] ? 'accent' : 'warn'"> {{element[col.field] ? 'done' : 'close'}}
+          </mat-icon>
+        </div>
 
-          <button mat-icon-button color="{{lineAction.color}}" *ngFor="let lineAction of config.lineActions"
-            (click)="lineAction.action(element)" placement="top" ngbTooltip="{{lineAction.label}}"
-            ngbTooltipClass="kt-tooltip">
+        <div *ngSwitchCase="'action'" class="example-button-row">
+
+          <button type="button" *ngFor="let lineAction of config.lineActions" mat-icon-button
+            color="{{lineAction.color}}" (click)="lineAction.action(element)" matTooltip="{{lineAction.label}}">
             <mat-icon>{{lineAction.icon}}</mat-icon>
           </button>
 

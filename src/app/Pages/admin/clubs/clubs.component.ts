@@ -4,6 +4,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { IClub } from 'app/backend/Models';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
+import { BreadcrumbPage } from 'app/components/breadcrumb/breadcrumb.component';
 
 @Component({
   selector: 'app-clubs',
@@ -11,6 +12,11 @@ import { MatSort } from '@angular/material/sort';
   styleUrls: ['./clubs.component.css']
 })
 export class ClubsComponent implements OnInit {
+
+  breadcrumbPages: BreadcrumbPage[] = [
+    { name: "Home", active: false, route: "/dashboard" },
+    { name: "Clubes", active: true }
+  ];
 
   clubs: IClub[];
   displayedColumns: string[] = ['name', 'responsible', 'district', 'actions'];

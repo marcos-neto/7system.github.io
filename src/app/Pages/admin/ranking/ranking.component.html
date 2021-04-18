@@ -1,73 +1,68 @@
-<div class="main-content">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-12">
-                <breadcrumb [pages]="breadcrumbPages"></breadcrumb>
-            </div>
-        </div>
-        <div class="row">
+<div class="row">
+    <div class="col-12">
+        <breadcrumb [pages]="breadcrumbPages"></breadcrumb>
+    </div>
+</div>
+<div class="row">
 
-            <div class="col-xl-8 col-md-12 col-sm-12">
-                <div class="card with-transition">
-                    <div class="card-header card-header-tabs card-header-custom">
-                        <div class="nav-tabs-navigation">
-                            <div class="nav-tabs-wrapper">
-                                <h4 class="card-title">Ranking</h4>
-                                <p class="card-category">Ranking do seu clube</p>
-                            </div>
-                        </div>
+    <div class="col-xl-8 col-md-12 col-sm-12">
+        <div class="card with-transition">
+            <div class="card-header card-header-tabs card-header-custom">
+                <div class="nav-tabs-navigation">
+                    <div class="nav-tabs-wrapper">
+                        <h4 class="card-title">Ranking</h4>
+                        <p class="card-category">Ranking do seu clube</p>
                     </div>
-                    <div class="card-body table-responsive">
-                        <mat-table #table [dataSource]="dataSource" class="mat-table">
-
-                            <ng-container matColumnDef="position">
-                                <mat-header-cell *matHeaderCellDef>Posição</mat-header-cell>
-                                <mat-cell *matCellDef="let row">
-                                    {{row.position}}
-                                    <span *ngIf="isPodium(row)">
-                                        <i class="material-icons podium" [ngClass]="getPodium(row)">emoji_events</i>
-                                    </span>
-
-                                </mat-cell>
-                            </ng-container>
-
-                            <ng-container matColumnDef="name">
-                                <mat-header-cell *matHeaderCellDef> Nome </mat-header-cell>
-                                <mat-cell *matCellDef="let row">
-                                    <span class="avatar">
-                                        <img [src]="row.avatar" />
-                                    </span>
-                                    {{row.username}}
-                                </mat-cell>
-                            </ng-container>
-
-
-                            <ng-container matColumnDef="unity">
-                                <mat-header-cell *matHeaderCellDef> Unidade </mat-header-cell>
-                                <mat-cell *matCellDef="let row">
-                                    {{row.unity}}
-                                </mat-cell>
-                            </ng-container>
-
-                            <ng-container matColumnDef="income">
-                                <mat-header-cell *matHeaderCellDef>Desbravares </mat-header-cell>
-                                <mat-cell *matCellDef="let row">
-                                    <span>
-                                        <img class="icon-desbravar-symbol"
-                                            src="../../../assets/img/desbravar-symbol.png">
-                                    </span>
-                                    {{row.income}}
-                                </mat-cell>
-                            </ng-container>
-
-                            <mat-header-row class="mat-header-row" *matHeaderRowDef="displayedColumns"></mat-header-row>
-                            <mat-row *matRowDef="let row; columns: displayedColumns;" class="selectable mat-row">
-                            </mat-row>
-                        </mat-table>
-                    </div>
-
                 </div>
             </div>
+            <div class="card-body table-responsive">
+                <mat-table #table [dataSource]="dataSource" class="mat-table">
+
+                    <ng-container matColumnDef="position">
+                        <mat-header-cell *matHeaderCellDef>Posição</mat-header-cell>
+                        <mat-cell *matCellDef="let row">
+                            {{row.position}}
+                            <span *ngIf="isPodium(row)">
+                                <i class="material-icons podium" [ngClass]="getPodium(row)">emoji_events</i>
+                            </span>
+
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="name">
+                        <mat-header-cell *matHeaderCellDef> Nome </mat-header-cell>
+                        <mat-cell *matCellDef="let row">
+                            <span class="avatar">
+                                <img [src]="row.avatar" />
+                            </span>
+                            {{row.username}}
+                        </mat-cell>
+                    </ng-container>
+
+
+                    <ng-container matColumnDef="unity">
+                        <mat-header-cell *matHeaderCellDef> Unidade </mat-header-cell>
+                        <mat-cell *matCellDef="let row">
+                            {{row.unity}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="income">
+                        <mat-header-cell *matHeaderCellDef>Desbravares </mat-header-cell>
+                        <mat-cell *matCellDef="let row">
+                            <span>
+                                <img class="icon-desbravar-symbol" src="../../../assets/img/desbravar-symbol.png">
+                            </span>
+                            {{row.income}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <mat-header-row class="mat-header-row" *matHeaderRowDef="displayedColumns"></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: displayedColumns;" class="selectable mat-row">
+                    </mat-row>
+                </mat-table>
+            </div>
+
         </div>
     </div>
 </div>

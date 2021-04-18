@@ -1,3 +1,4 @@
+import { SchedulingComponent } from './scheduling/scheduling.component';
 import { ClubComponent } from './club/club.component';
 import { ClubsComponent } from './clubs/clubs.component';
 import { Routes } from '@angular/router';
@@ -9,6 +10,7 @@ import { UsersComponent } from './users/users.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 
 import { DashboardComponent } from '../../dashboard/dashboard.component';
+import { ScheduleComponent } from './schedule/schedule.component';
 
 export const AdminLayoutRoutes: Routes = [
     { path: 'dashboard', component: DashboardComponent },
@@ -19,4 +21,6 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'bank', component: BankComponent },
     { path: 'clubs', component: ClubsComponent },
     { path: 'club', component: ClubComponent },
+    { path: 'schedule', component: ScheduleComponent },
+    { path: 'scheduling', component: SchedulingComponent },
 ];

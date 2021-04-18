@@ -1,0 +1,32 @@
+<form [formGroup]="config.formGroup" (ngSubmit)="formSubmit()">
+
+    <mat-form-field *ngFor="let field of config.formFields">
+
+        <input matInput [type]="getTypeInput(field)" [placeholder]="field.placeholder"
+            [formControl]="config.formGroup.controls[field.formControlName]"
+            [autocomplete]="field.autoComplete ? 'on' : 'off'">
+
+        <button *ngIf="field.inputType === 'password'" type="button" mat-icon-button matSuffix
+            (click)="showHide(field)">
+            <mat-icon color="primary">{{!field.showContent ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+
+        <mat-icon *ngIf="field.iconName && field.inputType !== 'password'" matSuffix>{{field.iconName}}</mat-icon>
+
+        <mat-hint *ngIf="field.hint" align="end">
+            <a *ngIf="field.hint.routerLink" [routerLink]="field.hint.routerLink">{{field.hint.text}}</a>
+        </mat-hint>
+
+        <mat-error *ngIf="field.displaysError && config.formGroup.controls[field.formControlName].invalid">
+            {{getErroMessage(config.formGroup.controls[field.formControlName])}}
+        </mat-error>
+
+    </mat-form-field>
+
+    <br>
+    <captcha *ngIf="config.captcha" [control]="config.formGroup.controls[config.captcha.formControlName]"> </captcha>
+    <br>
+
+    <button class="btn btn-lg btn-custom btn-block text-uppercase" type="submit"
+        [disabled]="config.formGroup.invalid">{{config.submitButtonLabel}}</button>
+</form>

@@ -5,4 +5,16 @@
 .image-user-profile{
     width: 30px;
     border-radius: 50%;
+    cursor: pointer;
+}
+
+.custom-color:hover{
+    background-color: #070652;
+    color: #fff;
+}
+
+.user-profile:hover{
+    cursor: pointer;
+    border-radius: 35px !important;
+    background-color:#e6e6e6;
 }

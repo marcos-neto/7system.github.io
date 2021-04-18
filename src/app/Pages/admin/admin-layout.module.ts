@@ -1,3 +1,6 @@
+import { DialogsModule } from './../../dialogs/dialogs.module';
+import { NewPhoneComponent } from './../../dialogs/new-phone/new-phone.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { ComponentsModule } from '../../components/components.module';
 import { BankComponent } from './bank/bank.component';
 import { RankingComponent } from './ranking/ranking.component';
@@ -39,6 +42,14 @@ import { ClubsComponent } from 'app/Pages/admin/clubs/clubs.component';
 import { ClubComponent } from 'app/Pages/admin/club/club.component';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { LoaderService } from 'app/backend/services/loader.service';
+import { ScheduleComponent } from './schedule/schedule.component';
+import { SchedulingComponent } from './scheduling/scheduling.component';
+import { MatBadgeModule } from '@angular/material/badge';
+import { SocialLoginModule } from 'angularx-social-login';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatListModule } from '@angular/material/list';
+import { PipesModule } from '../../pipes/pipes.module';
+import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 
 @NgModule({
   imports: [
@@ -68,7 +79,15 @@ import { LoaderService } from 'app/backend/services/loader.service';
     ImageCropperModule,
     MatProgressBarModule,
     ComponentsModule,
-    NgxLoadingModule.forRoot({})
+    MatBadgeModule,
+    MatDatepickerModule,
+    SocialLoginModule,
+    MatSlideToggleModule,
+    MatListModule,
+    DialogsModule,
+    NgxLoadingModule.forRoot({}),
+    PipesModule,
+    NgxMaterialTimepickerModule.setLocale('pt-BR'),
   ],
   declarations: [
     DashboardComponent,
@@ -76,11 +95,11 @@ import { LoaderService } from 'app/backend/services/loader.service';
     UsersComponent,
     RankingComponent,
     BankComponent,
-    UploadImageComponent,
-    DeleteUserComponent,
     UserComponent,
     ClubsComponent,
-    ClubComponent
+    ClubComponent,
+    ScheduleComponent,
+    SchedulingComponent,
   ],
   providers: [{ provide: MatPaginatorIntl, useClass: BrPaginator }, LoaderService],
 })

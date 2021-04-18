@@ -1,0 +1,28 @@
+<div class="mx-auto wrap-login">
+    <div class="justify">
+        <img class="logo" src="/assets/img/Logo-7system.jpg" />
+    </div>
+    <div class="justify">
+        <h3>Cadastre-se</h3>
+    </div>
+    <hr class="my-4">
+
+    <button mat-stroked-button color="primary" class="btn-block" (click)="registerWithEmail()">
+        Registrar usando email e senha
+    </button>
+
+    <button mat-raised-button color="warn" class="btn-block" (click)="registerWithGoogle()">
+        Registrar usando o Google
+    </button>
+
+    <button mat-raised-button color="primary" class="btn-block" (click)="registerWithFacebook()">
+        Registrar usando o Facebook
+    </button>
+
+    <hr class="my-4">
+    <div class="justify">
+        <p>Ja possui uma conta? <a routerLink="/login">Faça login</a></p>
+    </div>
+
+    <loader></loader>
+</div>

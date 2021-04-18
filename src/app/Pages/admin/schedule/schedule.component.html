@@ -1,0 +1,19 @@
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header card-header-custom">
+                <h4 class="card-title">Calendário do Clube</h4>
+            </div>
+            <div class="card-body">
+                <div *ngIf="calendarOk">
+                    <generic-calendar [data]="dataEvents" (refreshEvent)="refreshCalendar()"></generic-calendar>
+                    <calendar-subtitle [legends]="legends" [view]="'horizontal'" [title]="'Legenda'">
+                    </calendar-subtitle>
+                </div>
+
+                <loader></loader>
+
+            </div>
+
+        </div>
+    </div>

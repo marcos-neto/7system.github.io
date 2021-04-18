@@ -1,0 +1,69 @@
+<h2 mat-dialog-title class="event-title-color" [style.border-color]="event.color.primary">
+    {{event.title}}
+</h2>
+<div mat-dialog-content class="mat-typography">
+
+    <div class="row">
+        <div class="col">
+            <div class="form-group">
+                <label class="form-text" for="description">
+                    <strong>
+                        Descrição
+                    </strong>
+                </label>
+                <span class="form-text" id="description">
+                    {{event.meta}}
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <div class="form-group">
+                <label class="form-text" for="start">
+                    <strong>
+                        Inicio
+                    </strong>
+                </label>
+                <span class="form-text" id="start">
+                    {{event.start | date:'fullDate' | upperFirstLetter}}
+                </span>
+            </div>
+        </div>
+        <div class="col">
+            <div class="form-group">
+                <label class="form-text" for="end">
+                    <strong>
+                        Fim
+                    </strong>
+                </label>
+                <span class="form-text" id="end">
+                    {{event.end | date:'fullDate' | upperFirstLetter}}
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <div class="form-group">
+                <label class="form-text" for="period">
+                    <strong>
+                        Periodo
+                    </strong>
+                </label>
+                <span class="form-text" id="period" *ngIf="event.allDay">Dia Todo</span>
+                <span class="form-text" id="period" *ngIf="!event.allDay">
+                    Das {{event.start | date: 'shortTime'}} as {{event.end | date: 'shortTime'}}
+                </span>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div mat-dialog-actions align="end">
+    <button type="button" mat-raised-button mat-dialog-close cdkFocusInitial color="custom">Ok</button>
+</div>

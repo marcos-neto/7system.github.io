@@ -79,7 +79,7 @@ export class BankComponent implements OnInit {
             this.getUsers();
           },
           err => {
-            this.notification.showNotify(err.error, 'danger');
+            this.notification.show(err.error, 'danger');
           }
         );
       }
@@ -98,12 +98,12 @@ export class BankComponent implements OnInit {
 
   validateTransaction(): boolean {
     if (this.formTransaction.invalid) {
-      this.notification.showNotify("Os campos, 'Valor' e 'Justificativa' são obrigatórios", "danger");
+      this.notification.show("Os campos, 'Valor' e 'Justificativa' são obrigatórios", "danger");
       return false;
     }
 
     if (this.selection.selected.length == 0) {
-      this.notification.showNotify("Selecione pelo menos um usuario", "danger");
+      this.notification.show("Selecione pelo menos um usuario", "danger");
       return false;
     }
 

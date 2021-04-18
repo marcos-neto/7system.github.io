@@ -2,7 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ImageCroppedEvent } from 'ngx-image-cropper';
 import { CustonNotification } from 'app/common/Notification';
-import { LoadingConfig } from 'app/common/Constantes';
+import { LoadingConfig } from 'app/_config/loading.config';
 
 declare var $: any;
 @Component({
@@ -42,7 +42,7 @@ export class UploadImageComponent implements OnInit {
 
     if (event && event.target.files[0]) {
       if (event.target.files[0].type != 'image/jpeg' && event.target.files[0].type != 'image/png') {
-        this.notification.showNotify("Formato da imagem inválido", "danger")
+        this.notification.error("Formato da imagem inválido");
         return;
       }
     }
@@ -59,7 +59,7 @@ export class UploadImageComponent implements OnInit {
   }
 
   loadImageFailed() {
-    this.notification.showNotify("Erro ao carregar imagem", "danger")
+    this.notification.error("Erro ao carregar imagem");
     this.loading = false;
   }
 

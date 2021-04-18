@@ -55,7 +55,7 @@ export class UsersComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
 
       if (result && result === true) {
-        this.notification.showNotify('Usuário Deletado', 'success');
+        this.notification.show('Usuário Deletado', 'success');
         this.getUsers();
       }
 

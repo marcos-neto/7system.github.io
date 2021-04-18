@@ -6,7 +6,6 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { RankingService } from 'app/backend/services/ranking.service';
 import { CustonNotification } from 'app/common/Notification';
-import { LoadingConfig } from 'app/common/Constantes';
 
 @Component({
   selector: 'app-ranking',

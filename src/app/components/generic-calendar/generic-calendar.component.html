@@ -1,0 +1,69 @@
+<div class="row align-items-center">
+    <div class="col-md-4">
+        <h3>{{ viewDate | calendarDate:(view + 'ViewTitle'):locale:weekStartsOn | titlecase }}</h3>
+    </div>
+
+    <div class="col-md-4 text-center">
+        <div class="btn-group">
+            <div class="btn btn-primary" (click)="setView(CalendarView.Month)"
+                [class.active]="view === CalendarView.Month">
+                Mês
+            </div>
+            <div class="btn btn-primary" (click)="setView(CalendarView.Week)"
+                [class.active]="view === CalendarView.Week">
+                Semana
+            </div>
+            <div class="btn btn-primary" (click)="setView(CalendarView.Day)" [class.active]="view === CalendarView.Day">
+                Dia
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3 text-right">
+        <div class="btn-group">
+
+            <mat-button-toggle-group #group="matButtonToggleGroup">
+
+                <mat-button-toggle mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate"
+                    (viewDateChange)="closeOpenMonthViewDay()" matTooltip="Anterior">
+                    <mat-icon>navigate_before</mat-icon>
+                </mat-button-toggle>
+
+                <mat-button-toggle mwlCalendarNextView [view]="view" [(viewDate)]="viewDate"
+                    (viewDateChange)="closeOpenMonthViewDay()" matTooltip="Próximo">
+                    <mat-icon>navigate_next</mat-icon>
+                </mat-button-toggle>
+
+                <mat-button-toggle mwlCalendarToday [(viewDate)]="viewDate" matTooltip="Hoje">
+                    <mat-icon>today</mat-icon>
+                </mat-button-toggle>
+
+            </mat-button-toggle-group>
+        </div>
+    </div>
+
+    <div class="col-md-1 text-right">
+        <button mat-mini-fab color="custom" matTooltip="Recarregar" (click)="refresh()">
+            <mat-icon>refresh</mat-icon>
+        </button>
+    </div>
+</div>
+<br />
+<div [ngSwitch]="view">
+
+    <mwl-calendar-month-view *ngSwitchCase="CalendarView.Month" [viewDate]="viewDate" [events]="events"
+        [activeDayIsOpen]="activeDayIsOpen" [locale]="locale" [weekStartsOn]="weekStartsOn" [weekendDays]="weekendDays"
+        (dayClicked)="dayClicked($event.day)" (eventClicked)="eventDetail($event.event)">
+    </mwl-calendar-month-view>
+
+    <mwl-calendar-week-view *ngSwitchCase="CalendarView.Week" [viewDate]="viewDate" [events]="events"
+        (eventClicked)="eventDetail($event.event)" [locale]="locale" [weekStartsOn]="weekStartsOn"
+        [weekendDays]="weekendDays">
+    </mwl-calendar-week-view>
+
+    <mwl-calendar-day-view *ngSwitchCase="CalendarView.Day" [viewDate]="viewDate" [events]="events"
+        (eventClicked)="eventDetail($event.event)" [locale]="locale" [weekStartsOn]="weekStartsOn"
+        [weekendDays]="weekendDays" [hourSegments]="5">
+    </mwl-calendar-day-view>
+
+</div>

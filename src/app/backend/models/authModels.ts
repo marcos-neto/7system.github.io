@@ -1,8 +1,9 @@
 export interface ICredentials {
     email: string;
-    password: string;
     grantType: string;
+    password?: string;
     refreshToken?: string;
+    socialId?: string;
 }
 
 export interface IToken {
@@ -15,7 +16,12 @@ export interface IToken {
 export interface IRegister {
     fullName: string;
     email: string;
-    birthDate: Date;
-    cellPhone: string;
-    clubId: number;
+    password: string;
+    socialId?: string;
+    provider?: string;
+}
+
+export interface IResetPassword {
+    token: string;
+    newPassword: string;
 }

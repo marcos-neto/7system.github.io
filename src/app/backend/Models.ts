@@ -44,14 +44,23 @@ export interface IViaCep {
     unidade: string;
     ibge: string;
     gia: string;
+    erro: boolean;
 }
 
 export interface RouteInfo {
     path: string;
     title: string;
-    icon: string;
-    class: string;
-    isVisible: boolean;
+    type: string;
+    icontype: string;
+    class?: string;
+    collapse?: string;
+    children?: ChildrenItem[]
+}
+
+export interface ChildrenItem {
+    path: string;
+    title: string;
+    type?: string;
 }
 
 export interface IRanking {
@@ -86,4 +95,19 @@ export interface IClub {
 export interface ISimplifiedClub {
     id: number,
     name: string
+}
+
+export interface ISchedule {
+    title: string;
+    description: string;
+    startDate: Date;
+    endDate: Date;
+    allDay: boolean;
+    type: number;
+    clubId?: number;
+}
+
+export interface IProvider {
+    id: number;
+    name: string;
 }

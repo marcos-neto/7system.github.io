@@ -1,6 +1,6 @@
 import { DataGridConfig } from './data-grid-config';
 import { MatTableDataSource } from '@angular/material/table';
-import { Component, Input, Output, ViewChild, EventEmitter, AfterViewInit } from '@angular/core';
+import { Component, Input, Output, ViewChild, EventEmitter, AfterViewInit, OnInit } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSelect } from '@angular/material/select';
@@ -11,7 +11,7 @@ import { MatFormField } from '@angular/material/form-field';
   templateUrl: './data-grid.component.html',
   styleUrls: ['./data-grid.component.scss']
 })
-export class DataGridComponent implements AfterViewInit {
+export class DataGridComponent implements OnInit {
 
   @Input() config: DataGridConfig;
   @Input() data: any[];
@@ -30,7 +30,7 @@ export class DataGridComponent implements AfterViewInit {
 
   constructor() { }
 
-  ngAfterViewInit(): void {
+  ngOnInit(): void {
     this.tableDataSource.data = this.data;
     this.cols = this.config.displayColumns.map(x => x.field);
 

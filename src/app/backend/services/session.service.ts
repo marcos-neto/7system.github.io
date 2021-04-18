@@ -9,6 +9,7 @@ export class SessionService {
     }
 
     get Token() {
+
         var token = sessionStorage.getItem('UserToken');
 
         if (token) {
