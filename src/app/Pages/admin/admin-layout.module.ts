@@ -18,7 +18,7 @@ import { DashboardComponent } from '../../dashboard/dashboard.component';
 import { MatSortModule } from '@angular/material/sort';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
-import { MatRippleModule } from '@angular/material/core';
+import { MatRippleModule, MAT_DATE_LOCALE, NativeDateAdapter } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSelectModule } from '@angular/material/select';
@@ -50,6 +50,26 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatListModule } from '@angular/material/list';
 import { PipesModule } from '../../pipes/pipes.module';
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
+import {
+  NgxMatDateAdapter,
+  NgxMatDateFormats,
+  NgxMatDatetimePickerModule,
+  NgxMatNativeDateModule,
+  NgxMatTimepickerModule,
+  NGX_MAT_DATE_FORMATS
+} from '@angular-material-components/datetime-picker';
+
+const CUSTOM_DATE_FORMATS: NgxMatDateFormats = {
+  parse: {
+    dateInput: "L"
+  },
+  display: {
+    dateInput: 'L',
+    monthYearLabel: "MM YYYY",
+    dateA11yLabel: "LL",
+    monthYearA11yLabel: "MMM YYYY"
+  }
+};
 
 @NgModule({
   imports: [
@@ -88,6 +108,9 @@ import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
     NgxLoadingModule.forRoot({}),
     PipesModule,
     NgxMaterialTimepickerModule.setLocale('pt-BR'),
+    NgxMatDatetimePickerModule,
+    NgxMatTimepickerModule,
+    NgxMatNativeDateModule,
   ],
   declarations: [
     DashboardComponent,
@@ -101,7 +124,11 @@ import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
     ScheduleComponent,
     SchedulingComponent,
   ],
-  providers: [{ provide: MatPaginatorIntl, useClass: BrPaginator }, LoaderService],
+  providers: [
+    LoaderService,
+    { provide: MatPaginatorIntl, useClass: BrPaginator },
+    { provide: NGX_MAT_DATE_FORMATS, useValue: CUSTOM_DATE_FORMATS }
+  ],
 })
 
 export class AdminLayoutModule { }

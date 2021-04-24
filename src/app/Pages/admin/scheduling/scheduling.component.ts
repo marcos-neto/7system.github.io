@@ -1,3 +1,4 @@
+import { LoaderService } from 'app/backend/services/loader.service';
 import { Validations } from './../../../common/validations';
 import { ISchedule } from './../../../backend/Models';
 import { ScheduleService } from './../../../backend/services/schedule.service';
@@ -21,14 +22,15 @@ export class SchedulingComponent implements OnInit {
     { id: 5, name: 'Igreja' }
   ];
 
-  allDayForm = new FormControl(true, Validators.required);
+  allDayForm = new FormControl(false, Validators.required);
   formTitle = new FormControl('', Validators.required);
 
   constructor(
     private builder: FormBuilder,
     public mask: InputMaskService,
     private formService: FormService,
-    private scheduleService: ScheduleService
+    private scheduleService: ScheduleService,
+    private loaderService: LoaderService
   ) { }
 
   ngOnInit(): void {
@@ -40,14 +42,14 @@ export class SchedulingComponent implements OnInit {
     endDate: new FormControl(new Date(), Validators.required),
     description: new FormControl('', Validators.required),
     schedulingType: new FormControl('', Validators.required),
-    allDay: this.allDayForm,
-    hourIni: new FormControl('',),
-    hourEnd: new FormControl(''),
+    allDay: this.allDayForm
   }, {
-    validators: [Validations.ScheduleHourRequired]
+    // validators: [Validations.ScheduleHourRequired]
   });
 
   saveScheduling() {
+
+    this.loaderService.show();
 
     var schedule: ISchedule = {
       allDay: this.formCreateScheduling.get('allDay').value,
@@ -58,16 +60,9 @@ export class SchedulingComponent implements OnInit {
       endDate: this.formCreateScheduling.get('endDate').value,
     }
 
-    if (!this.formCreateScheduling.get('allDay').value) {
-
-
-      let arrayStartHour = this.formCreateScheduling.get('hourIni').value.split(':');
-      let arrayEndHour = this.formCreateScheduling.get('hourEnd').value.split(':');
-      schedule.startDate.setHours(arrayStartHour[0], arrayStartHour[1])
-      schedule.endDate.setHours(arrayEndHour[0], arrayEndHour[1])
-    }
-
-    console.log(schedule);
+    this.scheduleService.createSchedule(schedule).subscribe(res => {
+      this.loaderService.hide();
+    })
   }
 
   isCheckAllDay(value: any) {
