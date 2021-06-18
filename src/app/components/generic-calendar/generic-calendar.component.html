@@ -21,23 +21,18 @@
 
     <div class="col-md-3 text-right">
         <div class="btn-group">
-
             <mat-button-toggle-group #group="matButtonToggleGroup">
-
                 <mat-button-toggle mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate"
                     (viewDateChange)="closeOpenMonthViewDay()" matTooltip="Anterior">
                     <mat-icon>navigate_before</mat-icon>
                 </mat-button-toggle>
-
                 <mat-button-toggle mwlCalendarNextView [view]="view" [(viewDate)]="viewDate"
                     (viewDateChange)="closeOpenMonthViewDay()" matTooltip="Próximo">
                     <mat-icon>navigate_next</mat-icon>
                 </mat-button-toggle>
-
                 <mat-button-toggle mwlCalendarToday [(viewDate)]="viewDate" matTooltip="Hoje">
                     <mat-icon>today</mat-icon>
                 </mat-button-toggle>
-
             </mat-button-toggle-group>
         </div>
     </div>
@@ -50,20 +45,16 @@
 </div>
 <br />
 <div [ngSwitch]="view">
-
     <mwl-calendar-month-view *ngSwitchCase="CalendarView.Month" [viewDate]="viewDate" [events]="events"
         [activeDayIsOpen]="activeDayIsOpen" [locale]="locale" [weekStartsOn]="weekStartsOn" [weekendDays]="weekendDays"
         (dayClicked)="dayClicked($event.day)" (eventClicked)="eventDetail($event.event)">
     </mwl-calendar-month-view>
-
     <mwl-calendar-week-view *ngSwitchCase="CalendarView.Week" [viewDate]="viewDate" [events]="events"
         (eventClicked)="eventDetail($event.event)" [locale]="locale" [weekStartsOn]="weekStartsOn"
         [weekendDays]="weekendDays">
     </mwl-calendar-week-view>
-
     <mwl-calendar-day-view *ngSwitchCase="CalendarView.Day" [viewDate]="viewDate" [events]="events"
         (eventClicked)="eventDetail($event.event)" [locale]="locale" [weekStartsOn]="weekStartsOn"
         [weekendDays]="weekendDays" [hourSegments]="5">
     </mwl-calendar-day-view>
-
 </div>

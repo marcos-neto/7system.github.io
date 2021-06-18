@@ -14,6 +14,8 @@ import { FormService } from 'app/backend/services/form.service';
 })
 export class SchedulingComponent implements OnInit {
 
+  dataEvents: ISchedule[] = [];
+
   schedulingTypes: any[] = [
     { id: 1, name: 'Clube' },
     { id: 2, name: 'Area' },

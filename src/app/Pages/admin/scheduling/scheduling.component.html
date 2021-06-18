@@ -47,7 +47,8 @@
                                 <mat-datepicker-toggle matSuffix [for]="pickerIni">
                                     <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
                                 </mat-datepicker-toggle>
-                                <ngx-mat-datetime-picker #pickerIni [hideTime]="allDayForm.value">
+                                <ngx-mat-datetime-picker #pickerIni [hideTime]="allDayForm.value"
+                                    [enableMeridian]="true">
                                 </ngx-mat-datetime-picker>
                             </mat-form-field>
                         </div>
@@ -68,7 +69,8 @@
                                 <mat-datepicker-toggle matSuffix [for]="pickerEnd">
                                     <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
                                 </mat-datepicker-toggle>
-                                <ngx-mat-datetime-picker #pickerEnd [hideTime]="allDayForm.value">
+                                <ngx-mat-datetime-picker #pickerEnd [hideTime]="allDayForm.value"
+                                    [enableMeridian]="true">
                                 </ngx-mat-datetime-picker>
                             </mat-form-field>
 
